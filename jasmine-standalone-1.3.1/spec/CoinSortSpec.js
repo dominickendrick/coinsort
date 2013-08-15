@@ -1,4 +1,4 @@
-describe("Accepted Input types", function() {
+describe("Sorting pennies into coins", function() {
 	
 	var coinSort;
 
