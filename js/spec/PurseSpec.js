@@ -127,3 +127,47 @@ describe("Sorting pennies into coins", function() {
 	});
 
 });
+
+describe("Checking for integers", function() {
+	
+	var purse;
+
+	beforeEach(function() {
+    	purse = new Purse();
+  	});
+
+	it("correctly checks an interger",function(){
+ 		var input = '123';
+ 		expect(purse._isInt(input)).toEqual(true);
+	});
+
+	it("returns false on float",function(){
+ 		var input = '123.123';
+ 		expect(purse._isInt(input)).toEqual(false);
+	});
+});
+
+describe("Adding to our purse", function() {
+	
+	var purse;
+
+	beforeEach(function() {
+    	purse = new Purse();
+  	});
+
+	it("add item if amount is 1 or more",function(){
+ 		var amount = 1;
+        var coin   = '£1';
+		var output = {'£1':1}
+ 		purse._addToPurse(coin,amount)
+		expect(purse.purse).toEqual(output);
+	});
+
+	it("does not add if amount is empty",function(){
+ 		var amount = 0;
+        var coin   = '£1';
+		var output = {}
+ 		purse._addToPurse(coin,amount)
+		expect(purse.purse).toEqual(output);
+	});
+});
