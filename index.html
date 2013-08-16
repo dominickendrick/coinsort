@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Coin Sort</title>
+        <link rel="stylesheet" href="style/main.css" type="text/css" />
         <script type="text/javascript" src="js/lib/jquery.js"></script>
         <script type="text/javascript" src="js/app.js"></script>
         <script type="text/javascript" src="js/src/models/Purse.js"></script>
@@ -10,23 +11,14 @@
         <script type="text/javascript" src="js/src/views/PurseView.js"></script>
     </head>
     <body>
+        <section class="main">
         <h1>Coin Sort</h1>
+        <p>This will take the amount of money you have, and tell you the smallest number of coins needed to make that amount</p>
         <form method="post" id="coin_sort">
             <label for="money">Enter the amount of money you have: </label>
             <input type="text" name="money" id="coin_sort_text" />
             <input type="submit" id="coin_sort_submit" />
         </form>
-        <div id="coin_output">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Coin</th>
-                        <th>Quantity</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </div>
+        </section>
     </body>
 </html>
