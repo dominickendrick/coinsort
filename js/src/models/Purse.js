@@ -39,7 +39,7 @@ Purse.prototype.toPennies = function(input) {
 	}
 
 	//parse pounds
-	input = this._parsePounds(input);
+	input = this._convertPounds(input);
 		
 	return parseInt(input);
 	
@@ -72,7 +72,7 @@ Purse.prototype._addToPurse = function(coin,amount) {
 	}
 }
 
-Purse.prototype._parsePounds = function(n) {
+Purse.prototype._convertPounds = function(n) {
 
 	//remove pound symbol	
 	n = n.replace(this.config.pound_regexp,"");
