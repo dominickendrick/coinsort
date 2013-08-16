@@ -18,10 +18,6 @@ function ErrorView(element, options) {
 	output += "<li>4.235p</li>";
 	output += "<li>£1.257422457p</li>";
 	output += "</ul>";
-	
-	if($(element).length == 0){
-		$('section.main').append('<div id="coin_output">');
-	}
 
 	$(element).html(output);
 

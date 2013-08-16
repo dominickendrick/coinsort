@@ -9,10 +9,7 @@ function PurseView(element, coins) {
 		output += "<td>" + coin + "</td>" + "<td>" + coins[coin] +"</td>";		
 		output += "</tr>";
 	}
-
-	if($(element).length == 0){
-		$('section.main').append('<div id="coin_output">');
-	}
+	
 	//add in table first
 	$(element).html(template);
 	//now add results

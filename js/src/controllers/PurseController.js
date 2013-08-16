@@ -27,6 +27,10 @@ PurseController.prototype.actionView = function(input) {
 }
 
 PurseController.prototype.render = function(name,element,options) {
+	//add output area if not yet added
+	if($(element).length == 0){
+		$('section.main').append('<div id="coin_output">');
+	}
 	
 	if ( typeof window[name] === 'function' ) {
 		new window[name](element, options);
