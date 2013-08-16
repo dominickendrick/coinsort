@@ -22,3 +22,8 @@ td,th{
 tr:nth-child(odd){
 	background-color:#f5f2f0;
 }
+
+p.error{
+	color:red;
+	font-weight:bold;
+}

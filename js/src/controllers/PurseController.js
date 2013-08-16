@@ -1,28 +1,34 @@
 function PurseController(purse) {
+	this.utils = new Utils;
 	if(purse == undefined){
 		this.purse = new Purse();
 	} else {
 		this.purse = purse
 	}
 	
-	this.element = '#coin_output tbody';
-	this.error   = '#coin_error';
+	this.element = 'div#coin_output';
 }
 
 PurseController.prototype.actionView = function(input) {
 
-	var view_options = {};
 	//if we have a input value passed, convert result
 	if(input != undefined){
 		var pennies 			= this.purse.toPennies(input);
 		var money_needed		= this.purse.toSterling(pennies);
-		view_options		 	= money_needed;
+	} 
+
+	//if nothing is returned, render an error
+	if(this.utils.isEmptyObject(money_needed)){
+		this.render('ErrorView',this.element,[]);
+	} else {
+		this.render('PurseView',this.element,money_needed);
 	}
 	
-	this.render(this.element,view_options);
-
 }
 
-PurseController.prototype.render = function(element,options) {
-	view = new PurseView(element, options);
+PurseController.prototype.render = function(name,element,options) {
+	
+	if ( typeof window[name] === 'function' ) {
+		new window[name](element, options);
+	}
 }
