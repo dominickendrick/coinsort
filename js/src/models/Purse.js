@@ -33,24 +33,45 @@ Purse.prototype.toPennies = function(input) {
 	input = input.replace(this.config.pence_regexp,"");
 		
 	//check if we are an interger
-	if(this.isInt(input)){
+	if(this._isInt(input)){
 		return parseInt(input);
 	}
 	
 	//parse pounds
-	input = this.parsePounds(input);
+	input = this._parsePounds(input);
 		
 	return parseInt(input);
 	
 };
 
-Purse.prototype.isInt = function(n) {
-	var matches = (n).match(/^\d+$/);
-	if ( matches == undefined || !( matches.length == 1 ) ) { return false; }
-	return matches[0]  == n;
+
+Purse.prototype.toSterling = function(input) {
+	
+	coins = this.coins;
+	//loop over all our coins
+	for (var i = 0; i < coins.length; i++){
+		var coin = coins[i];
+		for(value in coin){
+		    if (coin.hasOwnProperty(value)){
+				//calculate the max number of times this coin can fit into our input value
+				number_of_coins = Math.floor(input/value);
+				//remove the correct number of pennies from our input
+				input = input - (number_of_coins * value);
+				//add it to our purse
+				this._addToPurse(coin[value],number_of_coins);
+		    }
+		}	    
+	}
+	return this.purse;
 }
 
-Purse.prototype.parsePounds = function(n) {
+Purse.prototype._addToPurse = function(coin,amount) {
+	if(amount > 0){
+		this.purse[coin] = amount;
+	}
+}
+
+Purse.prototype._parsePounds = function(n) {
 
 	//remove pound symbol	
 	n = n.replace(this.config.pound_regexp,"");
@@ -66,29 +87,9 @@ Purse.prototype.parsePounds = function(n) {
 	
 }
 
-Purse.prototype.toSterling = function(input) {
-	
-	coins = this.coins;
-	//loop over all our coins
-	for (var i = 0; i < coins.length; i++){
-		var coin = coins[i];
-		for(value in coin){
-		    if (coin.hasOwnProperty(value)){
-				//calculate the max number of times this coin can fit into our input value
-				number_of_coins = Math.floor(input/value);
-				//remove the correct number of pennies from our input
-				input = input - (number_of_coins * value);
-				//add it to our purse
-				this.addToPurse(coin[value],number_of_coins);
-		    }
-		}	    
-	}
-	return this.purse;
-}
-
-Purse.prototype.addToPurse = function(coin,amount) {
-	if(amount > 0){
-		this.purse[coin] = amount;
-	}
+Purse.prototype._isInt = function(n) {
+	var matches = (n).match(/^\d+$/);
+	if ( matches == undefined || !( matches.length == 1 ) ) { return false; }
+	return matches[0]  == n;
 }
 
