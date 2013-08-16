@@ -1,11 +1,12 @@
-requirejs.config({
-    //By default load any module IDs from js/lib
-    baseUrl: 'js/src',
-});
+$( document ).ready(function() {
+	
+	$('#coin_sort_submit').on('click', function(){
+		if( $('#coin_sort_text').val()){
+			purse = new PurseController();
+			purse.actionView($('#coin_sort_text').val());
+			return false;
+		}
+		return false;
+	});
 
-// Start the main app logic.
-requirejs(['app/sub'],
-function   (sub) {
-    //jQuery, canvas and the app/sub module are all
-    //loaded and can be used here now.
 });
