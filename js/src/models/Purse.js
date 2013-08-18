@@ -1,10 +1,6 @@
 function Purse() {
 	
-	this.config = {
-			pound_regexp: /^\u00A3|£/g,
-			pence_regexp: /p$/,
-			invalid_regexp: /[^p\u00A3\.\d£]/
-		};
+	this.currency = new Pound();
 
 	this.coins = [
 			{200: "£2"},
@@ -26,12 +22,12 @@ Purse.prototype.toDecimal = function(input) {
 	var input = input;
 
 	//check for input errors
-	if(this._checkDecimalInputError(input,this.config.invalid_regexp)){
+	if(this._checkDecimalInputError(input,this.currency.invalid_regexp)){
 		return 0;
 	};
 
 	//remove pence
-	input = input.replace(this.config.pence_regexp,"");
+	input = input.replace(this.currency.decimal_regexp,"");
 	
 	//check if we are an interger
 	if(this._isInt(input)){
@@ -75,7 +71,7 @@ Purse.prototype._addToPurse = function(coin,amount) {
 Purse.prototype._convertPounds = function(n) {
 
 	//remove pound symbol	
-	n = n.replace(this.config.pound_regexp,"");
+	n = n.replace(this.currency.currency_regexp,"");
 	//check we have a decimal place
 	if(n.match(/\./)){
 		//round it up to 2 decimal places

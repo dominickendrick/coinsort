@@ -12,7 +12,7 @@ requirejs.config({
 });
 
 // Start the main app logic.
-requirejs(['lib/jquery', 'utils/Utils', 'views/ErrorView', 'views/PurseView', 'controllers/PurseController', 'models/Purse'],
+requirejs(['lib/jquery', 'utils/Utils', 'views/ErrorView', 'views/PurseView', 'controllers/PurseController', 'models/Purse','models/Pound'],
 function  () {
 
 	  $( document ).ready(function() {	
