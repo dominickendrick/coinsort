@@ -35,7 +35,7 @@ Purse.prototype.toDecimal = function(input) {
 	}
 
 	//parse pounds
-	input = this._convertPounds(input);
+	input = this._stripCurrency(input);
 		
 	return parseInt(input);
 	
@@ -68,12 +68,12 @@ Purse.prototype._addToPurse = function(coin,amount) {
 	}
 }
 
-Purse.prototype._convertPounds = function(n) {
+Purse.prototype._stripCurrency = function(n) {
 
-	//remove pound symbol	
+	//remove currency symbol	
 	n = n.replace(this.currency.currency_regexp,"");
-	//check we have a decimal place
-	if(n.match(/\./)){
+	//check we have a decimal seperator
+	if(n.indexOf(this.currency.decimal_seperator) >= 0){
 		//round it up to 2 decimal places
 		n = Math.round(n * 100);
 		return parseInt(n);
