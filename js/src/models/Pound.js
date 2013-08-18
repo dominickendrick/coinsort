@@ -14,3 +14,15 @@ function Pound (type){
 	
 }
 
+Pound.prototype.coinValue = function(value){
+	//takes a number value and returns the coin denomination depending
+	// of the digits after decimal seperator ie with deciaml seperator digits as 2
+	// 200 = £2 and 50 = 50p
+	decimal_value = Math.pow(10,this.decimal_seperator_digits);
+	if(value < decimal_value){
+		return value + this.decimal_symbol;
+	} else {
+		return this.currency_symbol + (value/decimal_value);
+	}
+}
+
