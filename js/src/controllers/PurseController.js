@@ -13,15 +13,15 @@ PurseController.prototype.actionView = function(input) {
 
 	//if we have a input value passed, convert result
 	if(input != undefined){
-		var pennies 			= this.purse.toPennies(input);
-		var money_needed		= this.purse.toSterling(pennies);
+		var decimal 			= this.purse.toDecimal(input);
+		var coinSet				= this.purse.toCoinSet(decimal);
 	} 
 
 	//if nothing is returned, render an error
-	if(this.utils.isEmptyObject(money_needed)){
+	if(this.utils.isEmptyObject(coinSet)){
 		this.render('ErrorView',this.element,[]);
 	} else {
-		this.render('PurseView',this.element,money_needed);
+		this.render('PurseView',this.element,coinSet);
 	}
 	
 }

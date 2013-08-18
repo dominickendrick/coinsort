@@ -5,19 +5,19 @@ describe("Purse controller view action", function() {
 	beforeEach(function() {
 		//add mock purse model
 		purse = {
-			toPennies: function(){return},
-			toSterling: function(){return}			
+			toDecimal: function(){return},
+			toCoinSet: function(){return}			
 		}
-		spyOn(purse,'toPennies');
-		spyOn(purse,'toSterling');
+		spyOn(purse,'toDecimal');
+		spyOn(purse,'toCoinSet');
     	purse_controller = new PurseController(purse);
   	});
 
 	it("should call purse model",function(){
 		var input = '£1.50';
 		purse_controller.actionView(input);
-		expect(purse.toPennies).toHaveBeenCalled();
-		expect(purse.toSterling).toHaveBeenCalled();
+		expect(purse.toDecimal).toHaveBeenCalled();
+		expect(purse.toCoinSet).toHaveBeenCalled();
 	});
 
 });

@@ -21,14 +21,14 @@ function Purse() {
 				
 }
 
-Purse.prototype.toPennies = function(input) {
+Purse.prototype.toDecimal = function(input) {
 
 	var input = input;
 
-	//catch errors
-	if(input.match(this.config.invalid_regexp) || input == NaN || input == ''){
+	//check for input errors
+	if(this._checkDecimalInputError(input,this.config.invalid_regexp)){
 		return 0;
-	}
+	};
 
 	//remove pence
 	input = input.replace(this.config.pence_regexp,"");
@@ -46,7 +46,7 @@ Purse.prototype.toPennies = function(input) {
 };
 
 
-Purse.prototype.toSterling = function(input) {
+Purse.prototype.toCoinSet = function(input) {
 	
 	coins = this.coins;
 	//loop over all our coins
@@ -93,3 +93,9 @@ Purse.prototype._isInt = function(n) {
 	return matches[0]  == n;
 }
 
+Purse.prototype._checkDecimalInputError = function(input,matcher) {
+	if(input == NaN || input == '' || input.match(matcher)){
+		return true;
+	}
+	return false;
+}
